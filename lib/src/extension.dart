@@ -17,7 +17,7 @@ extension DeviceHelper on BuildContext {
 
   DeviceType get deviceType => device.type;
 
-  double? dp(double value) => value * device.sizeScaleFactor;
+  double dx(double value) => device.dp(value);
 
-  double? sp(double value) => value * device.fontScaleFactor;
+  double px(double value) => device.sp(value);
 }

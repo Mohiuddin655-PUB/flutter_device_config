@@ -167,6 +167,28 @@ class Device extends Size {
     );
   }
 
+  Device copy({
+    double? width,
+    double? height,
+    double? fontScaleFactor,
+    double? radiusScaleFactor,
+    double? sizeScaleFactor,
+    double? spacingScaleFactor,
+    double? weightScaleFactor,
+    DeviceType? type,
+  }) {
+    return Device._(
+      width: width ?? this.width,
+      height: height ?? this.height,
+      type: type ?? this.type,
+      fontScaleFactor: fontScaleFactor ?? this.fontScaleFactor,
+      radiusScaleFactor: radiusScaleFactor ?? this.radiusScaleFactor,
+      sizeScaleFactor: sizeScaleFactor ?? this.sizeScaleFactor,
+      spacingScaleFactor: spacingScaleFactor ?? this.spacingScaleFactor,
+      weightScaleFactor: weightScaleFactor ?? this.weightScaleFactor,
+    );
+  }
+
   @override
   double get width => _apply(super.width);
 
@@ -186,6 +208,10 @@ class Device extends Size {
   double ratioY(double cy) => rationalHeight(cy) / 100;
 
   double ratio(double cx, double cy) => Size(cx, cy).aspectRatio;
+
+  double dp(double value) => value * sizeScaleFactor;
+
+  double sp(double value) => value * fontScaleFactor;
 
   @override
   String toString() {
