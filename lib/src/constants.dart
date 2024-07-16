@@ -1,4 +1,17 @@
+import 'dart:ui';
+
 /// A class containing static constants representing default dimensions and font variants for different devices.
+class DeviceAssumedSizes {
+  const DeviceAssumedSizes._();
+
+  static const watch = mobile;
+  static const mobile = Size(375, 812);
+  static const tablet = mobile;
+  static const laptop = mobile;
+  static const desktop = mobile;
+  static const tv = mobile;
+}
+
 class DeviceBreakpoints {
   const DeviceBreakpoints._();
 

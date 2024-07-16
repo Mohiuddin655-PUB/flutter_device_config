@@ -16,7 +16,7 @@ class ResponsiveLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return builder(
       context,
-      keep != null ? Device.from(keep!) : context.device,
+      keep != null ? context.deviceFromType(keep!) : context.device,
     );
   }
 }

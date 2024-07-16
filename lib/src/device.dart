@@ -6,6 +6,7 @@ import 'type.dart';
 /// A class representing device information such as screen dimensions and font variants.
 class Device extends Size {
   final DeviceType type;
+  final Size assumedSize;
   final double fontScaleFactor;
   final double radiusScaleFactor;
   final double sizeScaleFactor;
@@ -16,6 +17,7 @@ class Device extends Size {
   const Device._({
     required double width,
     double? height,
+    required this.assumedSize,
     required this.type,
     required this.fontScaleFactor,
     required this.radiusScaleFactor,
@@ -32,9 +34,11 @@ class Device extends Size {
     double? sizeScaleFactor,
     double? spacingScaleFactor,
     double? weightScaleFactor,
+    Size? assumedSize,
   }) : this._(
           height: height,
           type: DeviceType.watch,
+          assumedSize: assumedSize ?? DeviceAssumedSizes.watch,
           width: width ?? DeviceBreakpoints.watch,
           fontScaleFactor: fontScaleFactor ?? DeviceFontScaleFactors.watch,
           radiusScaleFactor:
@@ -54,9 +58,11 @@ class Device extends Size {
     double? sizeScaleFactor,
     double? spacingScaleFactor,
     double? weightScaleFactor,
+    Size? assumedSize,
   }) : this._(
           height: height,
           type: DeviceType.mobile,
+          assumedSize: assumedSize ?? DeviceAssumedSizes.mobile,
           width: width ?? DeviceBreakpoints.mobile,
           fontScaleFactor: fontScaleFactor ?? DeviceFontScaleFactors.mobile,
           radiusScaleFactor:
@@ -76,9 +82,11 @@ class Device extends Size {
     double? sizeScaleFactor,
     double? spacingScaleFactor,
     double? weightScaleFactor,
+    Size? assumedSize,
   }) : this._(
           height: height,
           type: DeviceType.tablet,
+          assumedSize: assumedSize ?? DeviceAssumedSizes.tablet,
           width: width ?? DeviceBreakpoints.tablet,
           fontScaleFactor: fontScaleFactor ?? DeviceFontScaleFactors.tablet,
           radiusScaleFactor:
@@ -98,9 +106,11 @@ class Device extends Size {
     double? sizeScaleFactor,
     double? spacingScaleFactor,
     double? weightScaleFactor,
+    Size? assumedSize,
   }) : this._(
           height: height,
           type: DeviceType.laptop,
+          assumedSize: assumedSize ?? DeviceAssumedSizes.laptop,
           width: width ?? DeviceBreakpoints.laptop,
           fontScaleFactor: fontScaleFactor ?? DeviceFontScaleFactors.laptop,
           radiusScaleFactor:
@@ -120,9 +130,11 @@ class Device extends Size {
     double? sizeScaleFactor,
     double? spacingScaleFactor,
     double? weightScaleFactor,
+    Size? assumedSize,
   }) : this._(
           height: height,
           type: DeviceType.desktop,
+          assumedSize: assumedSize ?? DeviceAssumedSizes.desktop,
           width: width ?? DeviceBreakpoints.desktop,
           fontScaleFactor: fontScaleFactor ?? DeviceFontScaleFactors.desktop,
           radiusScaleFactor:
@@ -142,9 +154,11 @@ class Device extends Size {
     double? sizeScaleFactor,
     double? spacingScaleFactor,
     double? weightScaleFactor,
+    Size? assumedSize,
   }) : this._(
           height: height,
           type: DeviceType.tv,
+          assumedSize: assumedSize ?? DeviceAssumedSizes.tv,
           width: width ?? DeviceBreakpoints.tv,
           fontScaleFactor: fontScaleFactor ?? DeviceFontScaleFactors.tv,
           radiusScaleFactor: radiusScaleFactor ?? DeviceRadiusScaleFactors.tv,
@@ -157,6 +171,7 @@ class Device extends Size {
   factory Device.from(DeviceType type, [double? height]) {
     return Device._(
       width: type.width,
+      assumedSize: type.assumedSize,
       fontScaleFactor: type.fontScaleFactor,
       radiusScaleFactor: type.radiusScaleFactor,
       sizeScaleFactor: type.sizeScaleFactor,
@@ -175,12 +190,14 @@ class Device extends Size {
     double? sizeScaleFactor,
     double? spacingScaleFactor,
     double? weightScaleFactor,
+    Size? assumedSize,
     DeviceType? type,
   }) {
     return Device._(
       width: width ?? this.width,
       height: height ?? this.height,
       type: type ?? this.type,
+      assumedSize: assumedSize ?? this.assumedSize,
       fontScaleFactor: fontScaleFactor ?? this.fontScaleFactor,
       radiusScaleFactor: radiusScaleFactor ?? this.radiusScaleFactor,
       sizeScaleFactor: sizeScaleFactor ?? this.sizeScaleFactor,
@@ -188,30 +205,6 @@ class Device extends Size {
       weightScaleFactor: weightScaleFactor ?? this.weightScaleFactor,
     );
   }
-
-  @override
-  double get width => _apply(super.width);
-
-  @override
-  double get height => _apply(super.height);
-
-  double get ration => ratio(width, height);
-
-  double _apply(double value) => value > 100 ? value : value * 100;
-
-  double rationalWidth(double cx) => cx * ration;
-
-  double rationalHeight(double cy) => cy * ration;
-
-  double ratioX(double cx) => rationalWidth(cx) / 100;
-
-  double ratioY(double cy) => rationalHeight(cy) / 100;
-
-  double ratio(double cx, double cy) => Size(cx, cy).aspectRatio;
-
-  double dp(double value) => value * sizeScaleFactor;
-
-  double sp(double value) => value * fontScaleFactor;
 
   @override
   String toString() {

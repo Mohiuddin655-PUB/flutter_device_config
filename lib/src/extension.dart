@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'config.dart';
-import 'device.dart';
-import 'type.dart';
+import 'package:flutter_device_config/config.dart';
 
 extension DeviceHelper on BuildContext {
   MediaQueryData get _ => MediaQuery.of(this);
@@ -17,7 +14,21 @@ extension DeviceHelper on BuildContext {
 
   DeviceType get deviceType => device.type;
 
-  double dx(double value) => device.dp(value);
+  DimensionSize get dimension {
+    return DimensionSize(_cx, _cy, DeviceConfig.assumedSize(_size));
+  }
 
-  double px(double value) => device.sp(value);
+  Device deviceFromType(DeviceType type) => DeviceConfig.i.deviceFromType(type);
+
+  double dp(double value, [DimensionScaleMode? scaleMode]) {
+    return dimension.diagonal(_size, value, scaleMode);
+  }
+
+  double dx(double value, [DimensionScaleMode? scaleMode]) {
+    return dimension.getWidth(_cx, value, scaleMode);
+  }
+
+  double dy(double value, [DimensionScaleMode? scaleMode]) {
+    return dimension.getHeight(_cy, value, scaleMode);
+  }
 }

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'constants.dart';
 
 /// An enumeration representing different types of devices.
@@ -5,6 +7,7 @@ enum DeviceType {
   watch(
     name: "Watch",
     width: DeviceBreakpoints.watch,
+    assumedSize: DeviceAssumedSizes.watch,
     fontScaleFactor: DeviceFontScaleFactors.watch,
     radiusScaleFactor: DeviceRadiusScaleFactors.watch,
     sizeScaleFactor: DeviceSizeScaleFactors.watch,
@@ -14,6 +17,7 @@ enum DeviceType {
   mobile(
     name: "Mobile",
     width: DeviceBreakpoints.mobile,
+    assumedSize: DeviceAssumedSizes.mobile,
     fontScaleFactor: DeviceFontScaleFactors.mobile,
     radiusScaleFactor: DeviceRadiusScaleFactors.mobile,
     sizeScaleFactor: DeviceSizeScaleFactors.mobile,
@@ -23,6 +27,7 @@ enum DeviceType {
   tablet(
     name: "Tablet",
     width: DeviceBreakpoints.tablet,
+    assumedSize: DeviceAssumedSizes.tablet,
     fontScaleFactor: DeviceFontScaleFactors.tablet,
     radiusScaleFactor: DeviceRadiusScaleFactors.tablet,
     sizeScaleFactor: DeviceSizeScaleFactors.tablet,
@@ -32,6 +37,7 @@ enum DeviceType {
   laptop(
     name: "Laptop",
     width: DeviceBreakpoints.laptop,
+    assumedSize: DeviceAssumedSizes.laptop,
     fontScaleFactor: DeviceFontScaleFactors.laptop,
     radiusScaleFactor: DeviceRadiusScaleFactors.laptop,
     sizeScaleFactor: DeviceSizeScaleFactors.laptop,
@@ -41,6 +47,7 @@ enum DeviceType {
   desktop(
     name: "Desktop",
     width: DeviceBreakpoints.desktop,
+    assumedSize: DeviceAssumedSizes.desktop,
     fontScaleFactor: DeviceFontScaleFactors.desktop,
     radiusScaleFactor: DeviceRadiusScaleFactors.desktop,
     sizeScaleFactor: DeviceSizeScaleFactors.desktop,
@@ -50,6 +57,7 @@ enum DeviceType {
   tv(
     name: "TV",
     width: DeviceBreakpoints.tv,
+    assumedSize: DeviceAssumedSizes.tv,
     fontScaleFactor: DeviceFontScaleFactors.tv,
     radiusScaleFactor: DeviceRadiusScaleFactors.tv,
     sizeScaleFactor: DeviceSizeScaleFactors.tv,
@@ -58,6 +66,7 @@ enum DeviceType {
   );
 
   final String name;
+  final Size assumedSize;
   final double fontScaleFactor;
   final double radiusScaleFactor;
   final double sizeScaleFactor;
@@ -68,6 +77,7 @@ enum DeviceType {
   const DeviceType({
     required this.name,
     required this.width,
+    required this.assumedSize,
     required this.fontScaleFactor,
     required this.radiusScaleFactor,
     required this.sizeScaleFactor,

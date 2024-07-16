@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_device_config/config.dart';
 
 void main() {
-  DeviceConfig.init();
+  DeviceConfig.init(
+    scaleMode: DimensionScaleMode.minimum,
+  );
   runApp(const MyApp());
 }
 
@@ -27,23 +29,27 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveLayout(
-      // keep: DeviceType.laptop, // OPTIONAL
-      builder: (context, device) {
-        return Scaffold(
-          body: Container(
-            alignment: Alignment.center,
-            child: Text(
-              "$device",
-              style: TextStyle(
-                fontSize: device.sp(24),
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
+    return Scaffold(
+      body: Center(
+        child: Container(
+          alignment: Alignment.center,
+          width: context.dx(350),
+          height: context.dy(350),
+          decoration: BoxDecoration(
+            color: Colors.orange,
+            borderRadius: BorderRadius.circular(context.dp(25)),
+          ),
+          child: Text(
+            "${context.dp(16).toStringAsFixed(2)}\n${context.device}",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: context.dp(16),
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

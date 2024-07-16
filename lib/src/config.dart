@@ -1,15 +1,28 @@
+import 'dart:ui';
+
 import 'device.dart';
+import 'dimen.dart';
 import 'type.dart';
 
 /// A class representing configuration for different devices.
 class DeviceConfig {
+  final DimensionScaleMode scaleMode;
   final Device watch, mobile, tablet, laptop, desktop, tv;
 
   static DeviceConfig? _i;
 
   static DeviceConfig get i => _i ??= const DeviceConfig();
 
-  static void init({
+  static DimensionScaleMode get mode {
+    return _i?.scaleMode ?? DimensionScaleMode.minimum;
+  }
+
+  static Size? assumedSize(Size size) {
+    return _i?.device(size.width, size.height).assumedSize;
+  }
+
+  static DeviceConfig init({
+    DimensionScaleMode scaleMode = DimensionScaleMode.minimum,
     Device watch = const Device.watch(),
     Device mobile = const Device.mobile(),
     Device tablet = const Device.tablet(),
@@ -18,6 +31,7 @@ class DeviceConfig {
     Device tv = const Device.tv(),
   }) {
     _i = DeviceConfig(
+      scaleMode: scaleMode,
       watch: watch,
       mobile: mobile,
       tablet: tablet,
@@ -25,6 +39,7 @@ class DeviceConfig {
       desktop: desktop,
       tv: tv,
     );
+    return i;
   }
 
   void createInstance() => _i = this;
@@ -34,6 +49,7 @@ class DeviceConfig {
   /// The parameters [mobile], [tablet], [laptop], [desktop], and [tv] represent
   /// configurations for different types of devices.
   const DeviceConfig({
+    this.scaleMode = DimensionScaleMode.minimum,
     this.watch = const Device.watch(),
     this.mobile = const Device.mobile(),
     this.tablet = const Device.tablet(),

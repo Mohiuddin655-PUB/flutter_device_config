@@ -41,23 +41,33 @@ class MyApp extends StatelessWidget {
 }
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+   const Home({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        alignment: Alignment.center,
-        child: Text(
-          "${context.device}",
-          style: TextStyle(
-            fontSize: context.sp(14),
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-    );
-  }
+   @override
+   Widget build(BuildContext context) {
+      return Scaffold(
+         body: Center(
+            child: Container(
+               alignment: Alignment.center,
+               width: context.dx(350),
+               height: context.dy(350),
+               decoration: BoxDecoration(
+                  color: Colors.orange,
+                  borderRadius: BorderRadius.circular(context.dp(25)),
+               ),
+               child: Text(
+                  "${context.dp(16).toStringAsFixed(2)}\n${context.device}",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                     fontSize: context.dp(16),
+                     fontWeight: FontWeight.bold,
+                     color: Colors.black,
+                  ),
+               ),
+            ),
+         ),
+      );
+   }
 }
 ```
 
@@ -66,8 +76,9 @@ class Home extends StatelessWidget {
 ```dart
 Device device = context.device; // Type, width, height, scaleFactor
 DeviceType deviceType = context.deviceType; // WATCH, MOBILE, TABLET, LAPTOP, DESKTOP, TV
-double fontSize = context.sp(24); // 24 * font scale factor depending on screen size
-double containerWidth = context.dp(200); // 200 * size scale factor depending on screen size
+double fontSize = context.dp(24); // 24 * font assumed size factor depending on screen size
+double containerWidth = context.dx(200); // 200 * assumed size scale factor depending on screen width
+double containerHeight = context.dy(200); // 200 * assumed size scale factor depending on screen height
 ```
 
 ## 3. Build responsive layouts:
