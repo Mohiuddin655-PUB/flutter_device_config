@@ -1,6 +1,6 @@
 name: flutter_device_config
 description: "flutter_device_config is a Flutter package that helps you tailor your UI to different screen sizes and pixel densities. Determine if the device is a watch, mobile, tablet, laptop, desktop, or TV."
-version: 1.0.3
+version: 1.0.4
 repository: https://github.com/Mohiuddin655-PUB/flutter_device_config.git
 
 environment:
@@ -14,7 +14,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
+  flutter_lints: ^6.0.0
 
 flutter:
 

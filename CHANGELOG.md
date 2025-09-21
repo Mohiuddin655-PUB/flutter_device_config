@@ -1,3 +1,7 @@
+## 1.0.4
+
+* Improve responsive diagonal design (dp)
+
 ## 1.0.3
 
 * DimensionSize support [dp, dx, dy]
