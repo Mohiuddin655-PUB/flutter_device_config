@@ -37,15 +37,6 @@ class DimensionSize extends Size {
   }
 
   double _x(double value, double total) => max(0.0, value * total);
-
-  double dp(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    final x = size.width;
-    final y = size.height;
-    double diagonal = sqrt(pow(x, 2) + pow(y, 2));
-
-    return this * (diagonal / 1000);
-  }
   
   double diagonal(
     Size screenSize,
